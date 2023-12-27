@@ -23,6 +23,6 @@ export async function POST(req: NextRequest, res: NextResponse) {
 
     return NextResponse.json({ message: '회원가입 완료되었습니다.' }, { status: 200 });
   } catch (error: any) {
-    return NextResponse.json({ message: 'SERVER ERROR' }, { status: 500 });
+    return NextResponse.json({ message: '회원가입 실패하였습니다.(SERVER ERROR)' }, { status: 500 });
   }
 }

@@ -53,6 +53,6 @@ export async function POST(req: NextRequest, res: NextResponse) {
     }
     return NextResponse.json({ message: '메일 전송에 성공했습니다.' }, { status: 200 });
   } catch (error) {
-    return NextResponse.json({ message: '메일 전송에 실패했습니다.' }, { status: 500 });
+    return NextResponse.json({ message: '메일 전송에 실패했습니다.(SERVER ERROR)' }, { status: 500 });
   }
 }
