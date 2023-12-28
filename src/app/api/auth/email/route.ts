@@ -14,14 +14,14 @@ export async function POST(req: NextRequest, res: NextResponse) {
     // 클라이언트에서 받아 온 이메일
     const email = await req.json();
 
-    const ReEmail = await EmailAuth.findOne({ email: email.body });
-
+    const reEmail = await EmailAuth.findOne({ email: email });
     // 인증번호를 다시 전송하거나 재요청 했을때 그 전 인증번호 정보 삭제
-    if (ReEmail) {
-      await EmailAuth.deleteOne({ email: email.body });
+    if (reEmail) {
+      EmailAuth.deleteOne({ email: email });
     }
+
     // 랜덤인증번호
-    const authNumber = Math.floor(100000 + Math.random() * 900000) + '';
+    const authNumber = Math.floor(100000 + Math.random() * 900000);
 
     // 만료시간 설정
     const expiresInMinutes = 5;
@@ -30,19 +30,21 @@ export async function POST(req: NextRequest, res: NextResponse) {
     // 메일정보
     const mailData = {
       from: process.env.NEXT_PUBLIC_NODE_MAILER_ID,
-      to: email.body,
+      to: email,
       subject: 'coinMoa 인증번호 입니다.',
       html: `<strong>인증번호는 ${authNumber} 입니다.</strong>`,
     };
+
     // 이메일 검사
-    if (isValidEmail(email.body)) {
+    if (isValidEmail(email)) {
       // 데이터베이스에 저장할 정보
       const emailAuth = new EmailAuth({
-        email: email.body,
+        email: email,
         authNumber: authNumber,
         date: expiresAt,
       });
-      await emailAuth.save();
+
+      emailAuth.save();
 
       await transporter.sendMail(mailData);
       transporter.close();
@@ -51,6 +53,6 @@ export async function POST(req: NextRequest, res: NextResponse) {
     }
     return NextResponse.json({ message: '메일 전송에 성공했습니다.' }, { status: 200 });
   } catch (error) {
-    return NextResponse.json({ message: '메일 전송에 실패했습니다.' }, { status: 500 });
+    return NextResponse.json({ message: '메일 전송에 실패했습니다.(SERVER ERROR)' }, { status: 500 });
   }
 }

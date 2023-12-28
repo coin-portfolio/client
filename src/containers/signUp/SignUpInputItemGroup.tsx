@@ -1,6 +1,7 @@
 import Button from '@/components/common/Button';
 import Input from '@/components/common/Input';
 import InputLabelItem from '@/components/signUp/InputLabelItem';
+import { axiosInstance } from '@/services/instance';
 import defaultTheme from '@/styles/theme/defaultTheme';
 import { signUpObj } from '@/types/user';
 import axios from 'axios';
@@ -52,20 +53,10 @@ const SignUpInputItemGroup = () => {
     setAuthNumber(value);
   };
   const checkAuthNumber = async () => {
-    const res = await axios.post('api/auth/email/result', {
-      body: { authNumber: 171235, email: 'kongsunk@nate.com' },
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
+    const res = await axiosInstance.post('api/auth/email/result', { authNumber: 919221, email: 'kongsunk@nate.com' });
   };
   const sendAuthNumber = async () => {
-    const res = await axios.post('api/auth/email', {
-      body: 'kongsunk@nate.com',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
+    const res = await axiosInstance.post('api/auth/email', 'kongsunk@nate.com');
 
     return res.data;
   };
