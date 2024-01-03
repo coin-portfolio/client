@@ -1,20 +1,50 @@
+import { ChangeEvent, ReactNode } from 'react';
+
+import styled from 'styled-components';
 import Input from '../common/Input';
+import { flexbox } from '@/styles/mixins/flexbox';
+
+const ItemWrap = styled.div``;
+
+const Item = styled.div`
+  ${flexbox('space-between', 'center')}
+`;
 
 type Props = {
+  className?: string;
+  maxLength?: number;
   type?: string;
-  label: string;
   value: string;
-  onChangeHandler: any;
-  buttonComponents?: any;
+  onChangeHandler: (event: ChangeEvent<HTMLInputElement>) => void;
+  placeholder?: string;
+  disabled?: boolean;
+  buttonComponents?: ReactNode | any;
 };
 
-const InputLabelItem = ({ type, label, value, onChangeHandler, buttonComponents }: Props) => {
+const InputLabelItem = ({
+  className,
+  maxLength,
+  type = 'text',
+  value,
+  onChangeHandler,
+  placeholder,
+  disabled,
+  buttonComponents,
+}: Props) => {
   return (
-    <div>
-      <label>{label}</label>
-      <Input type={type} value={value} onChange={onChangeHandler} />
-      {buttonComponents && buttonComponents}
-    </div>
+    <ItemWrap className={className}>
+      <Item>
+        <Input
+          type={type}
+          maxLength={maxLength}
+          value={value}
+          onChange={onChangeHandler}
+          placeholder={placeholder}
+          disabled={!!disabled}
+        />
+        {buttonComponents && buttonComponents}
+      </Item>
+    </ItemWrap>
   );
 };
 

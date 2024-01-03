@@ -8,6 +8,11 @@ import { flexbox } from '@/styles/mixins/flexbox';
 import defaultTheme from '@/styles/theme/defaultTheme';
 import Container from '../common/layout/Container';
 
+const HeaderWrapper = styled.div`
+  border-bottom: 1px solid #2f2f2f;
+  height: 70px;
+`;
+
 const HeaderContent = styled.header`
   ${flexbox('space-between', 'center')};
   color: ${defaultTheme.color.WHILE};
@@ -17,14 +22,11 @@ const HeaderContent = styled.header`
 const Title = styled.h1`
   font-size: 24px;
 `;
+
 const StyleLink = styled(Link)`
   color: ${defaultTheme.color.WHILE};
   font-size: 12px;
   padding-right: 10px;
-`;
-const HeaderWrapper = styled.div`
-  border-bottom: 1px solid #2f2f2f;
-  height: 70px;
 `;
 
 const Header = () => {

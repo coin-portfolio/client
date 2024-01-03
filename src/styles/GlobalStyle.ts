@@ -1,8 +1,8 @@
-'use client'
+'use client';
 
-import { createGlobalStyle } from "styled-components";
-import defaultTheme from '@/styles/theme/defaultTheme'
-import reset from "styled-reset";
+import { createGlobalStyle } from 'styled-components';
+import defaultTheme from '@/styles/theme/defaultTheme';
+import reset from 'styled-reset';
 
 const GlobalStyle = createGlobalStyle`
     ${reset}
@@ -84,17 +84,7 @@ const GlobalStyle = createGlobalStyle`
         background-color: ${defaultTheme.color.MAIN_BG};
     }
 
-    ::-webkit-scrollbar {
-        background-color: transparent;
-        width: 7px;
-        height: 7px;
-    }
-    ::-webkit-scrollbar-thumb {
-        border-radius: 7px;
-        background: #2E2C30;
-    }
     
 `;
-
 
 export default GlobalStyle;
