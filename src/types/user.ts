@@ -1,6 +1,10 @@
-export type signUpObj = {
+export type signUpParmasObj = {
   id: string;
   password: string;
-  passwordConfirm: string;
   email: string;
+  date?: any;
+};
+
+export type signUpObj = signUpParmasObj & {
+  passwordConfirm: string;
 };

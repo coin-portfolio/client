@@ -1,7 +1,6 @@
 'use client';
 
-import SignUpButton from '@/containers/signUp/SignUpButton';
-import SignUpInputItemGroup from '@/containers/signUp/SignUpInputItemGroup';
+import SignUpForm from '@/containers/SignUp/SignUpForm';
 import { flexbox } from '@/styles/mixins/flexbox';
 import defaultTheme from '@/styles/theme/defaultTheme';
 import styled from 'styled-components';
@@ -24,8 +23,7 @@ const SignUp = () => {
   return (
     <SignUpWrap>
       <SignUpTitle>Sign Up</SignUpTitle>
-      <SignUpInputItemGroup />
-      <SignUpButton />
+      <SignUpForm />
     </SignUpWrap>
   );
 };
