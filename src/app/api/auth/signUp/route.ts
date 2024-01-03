@@ -6,7 +6,7 @@ import bcrypt from 'bcrypt';
 export async function POST(req: NextRequest, res: NextResponse) {
   try {
     await dbConnect();
-    const { id, password, email, date } = await req.json();
+    const { id, password, email } = await req.json();
 
     // bcrypt 비밀번호 암호화
     const hash = bcrypt.hashSync(password, 10);
@@ -15,7 +15,7 @@ export async function POST(req: NextRequest, res: NextResponse) {
       id,
       email,
       password: hash,
-      date,
+      date: new Date(),
     });
 
     // DB에 저장
@@ -23,6 +23,6 @@ export async function POST(req: NextRequest, res: NextResponse) {
 
     return NextResponse.json({ message: '회원가입 완료되었습니다.' }, { status: 200 });
   } catch (error: any) {
-    return NextResponse.json({ message: '회원가입 실패하였습니다.(SERVER ERROR)' }, { status: 500 });
+    return NextResponse.json({ message: '회원가입 실패하였습니다.' }, { status: 500 });
   }
 }

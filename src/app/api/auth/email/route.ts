@@ -2,10 +2,10 @@ import { NextRequest, NextResponse } from 'next/server';
 import { transporter } from '../../../../config/email';
 import dbConnect from '../../db/dbConnect';
 import EmailAuth from '../../../../../models/EmailAuth';
+import { emailRegEx } from '@/utils/constant';
 
 function isValidEmail(email: string) {
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  return emailRegex.test(email);
+  return emailRegEx.test(email);
 }
 
 export async function POST(req: NextRequest, res: NextResponse) {
@@ -53,6 +53,6 @@ export async function POST(req: NextRequest, res: NextResponse) {
     }
     return NextResponse.json({ message: '메일 전송에 성공했습니다.' }, { status: 200 });
   } catch (error) {
-    return NextResponse.json({ message: '메일 전송에 실패했습니다.(SERVER ERROR)' }, { status: 500 });
+    return NextResponse.json({ message: '메일 전송에 실패했습니다.' }, { status: 500 });
   }
 }

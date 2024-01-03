@@ -23,6 +23,6 @@ export async function POST(req: NextRequest, res: NextResponse) {
       return NextResponse.json({ message: '인증번호가 틀렸습니다.' }, { status: 400 });
     }
   } catch (error: any) {
-    return NextResponse.json({ message: '메일인증실패(SERVER ERROR)' }, { status: 500 });
+    return NextResponse.json({ message: '메일 인증을 실패했습니다' }, { status: 500 });
   }
 }

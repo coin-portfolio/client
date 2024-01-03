@@ -9,9 +9,7 @@ const dbConnect = async () => {
       useUnifiedTopology: true,
     };
     await mongoose.connect(MONGODB_URL, opts);
-    console.log('connect !!');
   } catch (error) {
-    console.log('db error');
     throw new Error('SDB Connect Error');
   }
 };

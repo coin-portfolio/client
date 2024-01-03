@@ -7,19 +7,26 @@ export async function POST(req: NextRequest, res: NextResponse) {
     await dbConnect();
     const id = await req.json();
     const users = await User.findOne({ id });
-
-    if (users === null) {
-      return NextResponse.json({
-        message: 'Available ID',
-        status: 200,
-      });
+    if (!users) {
+      return NextResponse.json(
+        {
+          message: '사용가능한 아이디입니다.',
+        },
+        {
+          status: 200,
+        },
+      );
     } else {
-      return NextResponse.json({
-        message: 'Disabled ID',
-        status: 403,
-      });
+      return NextResponse.json(
+        {
+          message: '이미 사용중인 아이디입니다.',
+        },
+        {
+          status: 403,
+        },
+      );
     }
   } catch (error: any) {
-    return new NextResponse(error);
+    return NextResponse.json({ message: error.statusText }, { status: 500 });
   }
 }
