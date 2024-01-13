@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation';
 import toast, { Toaster } from 'react-hot-toast';
 import styled from 'styled-components';
 import Button from '@/components/common/Button';
-import InputLabelItem from '@/components/signUp/InputLabelItem';
+import InputLabelItem from '@/components/common/InputLabelItem';
 import Loading from '@/components/common/Loading';
 import { checkAuthCodeApi, idCheckApi, sendAuthCodeEmailApi, signUpApi } from '@/services/auth';
 import useTimer from '@/hooks/useTimer';

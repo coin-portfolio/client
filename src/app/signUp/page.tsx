@@ -1,6 +1,6 @@
 'use client';
 
-import SignUpForm from '@/containers/SignUp/SignUpForm';
+import SignUpForm from '@/containers/signUp/SignUpForm';
 import { flexbox } from '@/styles/mixins/flexbox';
 import defaultTheme from '@/styles/theme/defaultTheme';
 import styled from 'styled-components';
