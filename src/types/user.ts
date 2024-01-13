@@ -8,3 +8,12 @@ export type signUpParmasObj = {
 export type signUpObj = signUpParmasObj & {
   passwordConfirm: string;
 };
+
+export type signInObj = {
+  id: string;
+  password: string;
+};
+
+export type UserStateType = {
+  userId: string;
+};

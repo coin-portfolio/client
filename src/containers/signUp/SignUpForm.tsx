@@ -1,9 +1,12 @@
+'use client';
+
 import { useState, FormEvent, useEffect } from 'react';
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import toast, { Toaster } from 'react-hot-toast';
 import styled from 'styled-components';
 import Button from '@/components/common/Button';
-import InputLabelItem from '@/components/signUp/InputLabelItem';
+import InputLabelItem from '@/components/common/InputLabelItem';
 import Loading from '@/components/common/Loading';
 import { checkAuthCodeApi, idCheckApi, sendAuthCodeEmailApi, signUpApi } from '@/services/auth';
 import useTimer from '@/hooks/useTimer';
@@ -81,6 +84,17 @@ const ResendEmailButton = styled(Button)`
   font-size: 12px;
 `;
 
+const SignInText = styled.p`
+  color: #cfcfd3;
+  font-size: 14px;
+  text-align: center;
+  margin-top: 30px;
+
+  a {
+    color: ${defaultTheme.color.MAIN_COLOR};
+  }
+`;
+
 const SignUpForm = () => {
   const router = useRouter();
   const [inputObj, setInputObj] = useState<signUpObj>({
@@ -114,7 +128,7 @@ const SignUpForm = () => {
     }
   }, [timer]);
 
-  const inputChangeHandler = (key: keyof signUpObj, value: any, e?: any) => {
+  const inputChangeHandler = (key: keyof signUpObj, value: any) => {
     setErrorMessageObj((prev) => ({ ...prev, [key]: '' }));
     setIdSuccessMessage('');
     setInputObj((prev: any) => ({ ...prev, [key]: value }));
@@ -224,6 +238,7 @@ const SignUpForm = () => {
     }
 
     if (availableId && availableEmail) {
+      setIsLoading(true);
       try {
         const res = await signUpApi({
           id: inputObj.id,
@@ -236,6 +251,8 @@ const SignUpForm = () => {
         }
       } catch (error: any) {
         toast.error(error.message);
+      } finally {
+        setIsLoading(false);
       }
     }
   };
@@ -247,7 +264,7 @@ const SignUpForm = () => {
           placeholder='아이디'
           value={inputObj.id}
           disabled={availableId}
-          onChangeHandler={(e: FormEvent<HTMLInputElement>) => inputChangeHandler('id', e.currentTarget.value, e)}
+          onChangeHandler={(e: FormEvent<HTMLInputElement>) => inputChangeHandler('id', e.currentTarget.value)}
           buttonComponents={
             availableId ? (
               <StyleCheckIcon fill='#3ec578' />
@@ -321,10 +338,13 @@ const SignUpForm = () => {
             <ErrorMessage>{errorMessageObj.authCode}</ErrorMessage>
           </>
         )}
-        <StyleSignUpButton disabled={false} onClick={signUpHandler}>
+        <StyleSignUpButton disabled={isLoading} onClick={signUpHandler}>
           회원가입
         </StyleSignUpButton>
 
+        <SignInText>
+          Already have an account? <Link href='/signIn'>SignIn</Link>
+        </SignInText>
         <Toaster position='top-center' />
       </InputLabelItemWrap>
       {isLoading && <StyleLoading />}

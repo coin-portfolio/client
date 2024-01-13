@@ -1,7 +1,7 @@
 import { ChangeEvent, ReactNode } from 'react';
 
 import styled from 'styled-components';
-import Input from '../common/Input';
+import Input from './Input';
 import { flexbox } from '@/styles/mixins/flexbox';
 
 const ItemWrap = styled.div``;

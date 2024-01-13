@@ -1,11 +1,11 @@
 'use client';
 
-import SignUpForm from '@/containers/signUp/SignUpForm';
+import SignInForm from '@/containers/SignIn/SignInForm';
 import { flexbox } from '@/styles/mixins/flexbox';
 import defaultTheme from '@/styles/theme/defaultTheme';
 import styled from 'styled-components';
 
-const SignUpWrap = styled.section`
+const SignInWrap = styled.section`
   ${flexbox('center', 'flex-start')}
   flex-direction:column;
   width: 500px;
@@ -13,19 +13,19 @@ const SignUpWrap = styled.section`
   margin: 0 auto;
 `;
 
-const SignUpTitle = styled.h2`
+const SignInTitle = styled.h2`
   font-size: 32px;
   color: ${defaultTheme.color.MAIN_COLOR};
   margin-bottom: 30px;
 `;
 
-const SignUp = () => {
+const SignIn = () => {
   return (
-    <SignUpWrap>
-      <SignUpTitle>Sign Up</SignUpTitle>
-      <SignUpForm />
-    </SignUpWrap>
+    <SignInWrap>
+      <SignInTitle>Sign In</SignInTitle>
+      <SignInForm />
+    </SignInWrap>
   );
 };
 
-export default SignUp;
+export default SignIn;

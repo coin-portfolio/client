@@ -36,3 +36,12 @@ export const signUpApi = async (params: signUpParmasObj) => {
     throw new Error(error.response.data.message);
   }
 };
+
+export const signInApi = async (params: any) => {
+  try {
+    const res = await axiosInstance.post('/api/signIn', params);
+    return res;
+  } catch (error: any) {
+    throw new Error(error.response.data.message);
+  }
+};

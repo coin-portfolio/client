@@ -3,7 +3,7 @@ import type { Metadata } from 'next';
 import { Roboto } from 'next/font/google';
 import GlobalStyle from '@/styles/GlobalStyle';
 import Container from '@/components/common/layout/Container';
-import ReduxProvider from '@/redux/Provider';
+import ReduxProvider from '@/redux/provider';
 
 export const metadata: Metadata = {
   title: 'Create Next App',
